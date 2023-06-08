@@ -1,0 +1,15 @@
+{
+  "name": "electron_app",
+  "version": "1.0.0",
+  "description": "first electron app for school project",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Félix Ravella",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^25.1.0"
+  }
+}
