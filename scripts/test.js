@@ -3,7 +3,9 @@ document.getElementById('addTextButton').addEventListener("click", () => {
 })
 
 
+
+
 function addText() {
-  const testContent = document.getElementById('test-content')
+  const testContent = document.getElementById('chat-messages')
   testContent.innerHTML += "lalala<br/>";
 }

@@ -1,0 +1,8 @@
+body {
+  background-color: rgb(235, 235, 255);
+}
+#chat-messages {
+  border: 1px solid black;
+  min-width: 300px;
+  width: fit-content;
+}
