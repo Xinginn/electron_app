@@ -1,6 +1,8 @@
+/*
 document.getElementById('addTextButton').addEventListener("click", () => {
   addText();
 })
+*/
 
 
 

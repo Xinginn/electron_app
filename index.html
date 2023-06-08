@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta
-    http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self'"
-    />
-    <meta
-    http-equiv="X-Content-Security-Policy"
-    content="default-src 'self'; script-src 'self'"
-    />
-    <title>Zoo dashboard</title>
 
-    <link rel="stylesheet" href="styles.css">
-    <!-- scripts used -->
-    <script defer src="scripts/test.js"></script>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+  <title>Zoo dashboard</title>
 
-    <h1>Tableau de bord zoo</h1>
+  <link rel="stylesheet" href="styles.css">
+  <!-- scripts used -->
+  <script defer src="scripts/chat.js"></script>
+  <script defer src="scripts/enclosure.ts"></script>
+</head>
 
-    <div>Chat</div>
-    <div id="chat-messages"></div>
-    <button type="button" id="addTextButton">+</button>
+<body>
+
+  <h1>Tableau de bord zoo</h1>
+
+  <div>Chat</div>
+  <div id="chat-messages"></div>
+  <button type="button" id="addTextButton">+</button>
+  <br>
+  <br>
+  <br>
+
+  <!-- Enclosure creation -->
+  <div id="enclosure-creation-container">
 
     <b>Creer un nouvel enclos</b>
     <form id="enclosure-form">
@@ -39,8 +42,15 @@
         <option value="jungle">Jungle</option>
         <option value="sea">Maritime</option>
       </select><br>
-      <button type="button" onclick="submitForm()">Confirmer</button>
+      <button id="enclosure-form-button" type="submit">Confirmer</button>
     </form>
+  </div>
 
-  </body>
+  <b>Enclosure List</b>
+  <table id="enclosure-table">
+
+  </table>
+
+</body>
+
 </html>
