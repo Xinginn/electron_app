@@ -4,6 +4,9 @@ const enclosures = [
 ]
 
 document.getElementById("enclosure-form").addEventListener("submit", event => handleSubmit(event))
+document.getElementById("create-enclosure-button").addEventListener("click", event => toggleCreation())
+
+
 
 function displayEnclosures(){
   // get all enclosures
@@ -40,8 +43,16 @@ function displayEnclosures(){
   }
 }
 
+function toggleCreation(){
+  console.log('hidden')
+  document.getElementById("enclosure-creation-container").classList.toggle("hidden")
+  document.getElementById("create-enclosure-button").classList.toggle("hidden")
+}
+
 function startEdit(index) {
-  document.getElementById("enclosure-creation-container").
+  document.getElementById("enclosure-creation-container").classList.toggle("hidden")
+  document.getElementById("create-enclosure-button").classList.toggle("hidden")
+
 }
 
 function requestDelete(index) {
@@ -57,6 +68,8 @@ function handleSubmit(event){
     biome: event.target.biome.value,
   }
   console.log(payload)
+  enclosures.push({id: enclosures.length, ...payload})
+  displayEnclosures();
 }
 
 displayEnclosures();
