@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="styles.css">
   <!-- scripts used -->
   <script defer src="scripts/chat.js"></script>
-  <script defer src="scripts/enclosure.ts"></script>
+  <script defer src="scripts/enclosure.js"></script>
 </head>
 
 <body>
@@ -32,15 +32,16 @@
 
     <b>Creer un nouvel enclos</b>
     <form id="enclosure-form">
-      <input type="text" name="name" placeholder="Nom de l'enclos"><br>
+      <input type="hidden" id="id" name="id" value=-1><br>
+      <input id="name" type="text" name="name" placeholder="Nom de l'enclos"><br>
       <select id="shape" name="shape">
-        <option selected value="square">Carré</option>
+        <option value="square">Carré</option>
         <option value="circle">Circulaire</option>
         <option value="other">Irrégulier</option>
       </select><br>
-      <input type="number" name="surface" step=1 min=0 max=1000 placeholder="100">m²<br>
+      <input id="surface" type="number" name="surface" step=1 min=0 max=1000 placeholder="100">m²<br>
       <select id="biome" name="biome">
-        <option selected value="desert">Désertique</option>
+        <option value="desert">Désertique</option>
         <option value="jungle">Jungle</option>
         <option value="sea">Maritime</option>
       </select><br>
