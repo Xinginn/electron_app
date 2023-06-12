@@ -7,9 +7,9 @@ document.getElementById("create-enclosure-button").addEventListener("click", eve
 
 
 
-function displayEnclosures(){
+async function displayEnclosures(){
   // get all enclosures
-  enclosuresData = getEnclosures();
+  enclosuresData = await getEnclosures();
 
   const head = "<tr><th>id</th><th>nom</th><th>forme</th><th>surface (m²)</th><th>biome</th><th>actions</th></tr>"
   const body = enclosuresData.reduce((stack, current) => {
@@ -57,17 +57,17 @@ function startEdit(id) {
   document.getElementById("biome").value = item.biome
 }
 
-function requestDelete(id) {
+async function requestDelete(id) {
   if (window.confirm('Voulez vous vraiment supprimer cet enclos?')) {
     console.log('delete ', id)
     
-    deleteEnclosure(id);
-    displayEnclosures();
+    await deleteEnclosure(id);
+    await displayEnclosures();
     console.log(enclosuresData);
   }
 }
 
-function handleSubmit(event){
+async function handleSubmit(event){
   event.preventDefault();
   const isCreation = (event.target.id.value == -1);
 
@@ -94,7 +94,7 @@ function handleSubmit(event){
     }
     */
   }
-  displayEnclosures();
+  await displayEnclosures();
 }
 
 displayEnclosures();
