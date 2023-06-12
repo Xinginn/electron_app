@@ -4,14 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'" />
   <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
   <title>Zoo dashboard</title>
 
   <link rel="stylesheet" href="styles.css">
   <!-- scripts used -->
+  <script src="./node_modules/chart.js/dist/chart.umd.js"></script>
   <script defer src="scripts/chat.js"></script>
-  <script defer src="scripts/enclosure.js"></script>
+  <script defer src="scripts/services/enclosure.js"></script>
+  <script defer src="scripts/controllers/enclosure.js"></script>
+
 </head>
 
 <body>

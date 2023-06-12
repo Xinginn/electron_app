@@ -1,7 +1,6 @@
-const enclosures = [
-  {id:1, name: "La savane", shape: "square", surface: 450, biome: "desert"},
-  {id:2, name: "la fosse aux ours", shape: "circle", surface: 120, biome: "jungle"},
-]
+
+
+let enclosuresData = []
 
 document.getElementById("enclosure-form").addEventListener("submit", event => handleSubmit(event))
 document.getElementById("create-enclosure-button").addEventListener("click", event => toggleCreation())
@@ -10,35 +9,35 @@ document.getElementById("create-enclosure-button").addEventListener("click", eve
 
 function displayEnclosures(){
   // get all enclosures
-  const data = enclosures;
+  enclosuresData = getEnclosures();
 
   const head = "<tr><th>id</th><th>nom</th><th>forme</th><th>surface (m²)</th><th>biome</th><th>actions</th></tr>"
-  let rowIndex = 0;
-  const body = data.reduce((stack, current) => {
+  const body = enclosuresData.reduce((stack, current) => {
     // open new row after current stack
     let row = stack + "<tr>";
     for (let key of Object.keys(current)){
       row += `<td>${current[key]}</td>`
     }
+    console.log(current.id)
     // add modify button
-    row += `<td><button id="enclosure-edit-${rowIndex}">Modifier</button>`
+    row += `<td><button id="enclosure-edit-${current.id}">Modifier</button>`
     // add delete button
-    row += `<button id="enclosure-delete-${rowIndex}">Supprimer</button></td>`
+    row += `<button id="enclosure-delete-${current.id}">Supprimer</button></td>`
     // close row
     row += "</tr>";
-    rowIndex += 1;
     return row;
   }, "");
   // connect all new buttons to functions
 
   document.getElementById("enclosure-table").innerHTML = head + body;
-  for (let i = 0; i < rowIndex; i++){
-    const el = 
-    document.getElementById(`enclosure-edit-${i}`).addEventListener("click", () => {
-      startEdit(i);
+  for (let idx = 0; idx < enclosuresData.length; idx++){
+    const id = enclosuresData[idx].id;
+
+    document.getElementById(`enclosure-edit-${id}`).addEventListener("click", () => {
+      startEdit(id);
     })
-    document.getElementById(`enclosure-delete-${i}`).addEventListener("click", () => {
-      requestDelete(i);
+    document.getElementById(`enclosure-delete-${id}`).addEventListener("click", () => {
+      requestDelete(id);
     })
   }
 }
@@ -48,9 +47,8 @@ function toggleCreation(){
   document.getElementById("create-enclosure-button").classList.toggle("hidden")
 }
 
-function startEdit(index) {
-  const item = enclosures[index]
-  console.log(item)
+function startEdit(id) {
+  const item = getEnclosureById(id);
   document.getElementById("enclosure-creation-container").classList.toggle("hidden")
   document.getElementById("create-enclosure-button").classList.toggle("hidden")
   document.getElementById("id").setAttribute('value', (item.id).toString())
@@ -60,8 +58,10 @@ function startEdit(index) {
   document.getElementById("biome").value = item.biome
 }
 
-function requestDelete(index) {
-  console.log('delete', index)
+function requestDelete(id) {
+  if (alert('VOulez vous vraiment supprimer cet enclos?')) {
+    console.log('delete', index)
+  }
 }
 
 function handleSubmit(event){
@@ -69,7 +69,7 @@ function handleSubmit(event){
   const isCreation = (event.target.id.value == -1);
 
   // set id if it is a new item
-  const id = (isCreation) ? (enclosures[enclosures.length-1].id) +1 : parseInt(event.target.id.value);
+  const id = (isCreation) ? (enclosuresData[enclosuresData.length-1].id) +1 : parseInt(event.target.id.value);
   const payload = {
     name: event.target.name.value,
     shape: event.target.shape.value,
@@ -78,15 +78,18 @@ function handleSubmit(event){
   }
   if (isCreation) {
     console.log('is creation')
-
-    enclosures.push({id, ...payload})
+    postEnclosure(payload)
+    //enclosures.push({id, ...payload})
   } else {
+    patchEnclosure(id, payload)
+    /*
     for (let i = 0; i < enclosures.length; i++){
       if (enclosures[i].id === id){
         const newItem = Object.assign(enclosures[i], payload);
         enclosures[i] = newItem;
       }
     }
+    */
   }
   displayEnclosures();
 }
