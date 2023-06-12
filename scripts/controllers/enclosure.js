@@ -6,6 +6,18 @@ document.getElementById("enclosure-form").addEventListener("submit", event => ha
 document.getElementById("create-enclosure-button").addEventListener("click", event => toggleForm())
 document.getElementById("close-enclosure-button").addEventListener("click", event => toggleForm())
 
+const biomeLabels = {
+  desert: "Désertique",
+  jungle: "Jungle",
+  sea: "Maritime",
+  forest: "Forestier"
+}
+
+const shapeLabels = {
+  square: "Carré",
+  circle: "Circulaire",
+  other: "Irrégulier"
+}
 
 
 async function displayEnclosures(){
@@ -16,13 +28,16 @@ async function displayEnclosures(){
   const body = enclosuresData.reduce((stack, current) => {
     // open new row after current stack
     let row = stack + "<tr>";
-    for (let key of Object.keys(current)){
-      row += `<td>${current[key]}</td>`
-    }
+    row += `<td>${current.id}</td>`;
+    row += `<td>${current.name}</td>`;
+    row += `<td>${shapeLabels[current.shape]}</td>`;
+    row += `<td>${current.surface}</td>`;
+    row += `<td>${biomeLabels[current.biome]}</td>`;
+
     // add modify button
-    row += `<td><button id="enclosure-edit-${current.id}">Modifier</button>`
+    row += `<td><button id="enclosure-edit-${current.id}">Edit</button>`
     // add delete button
-    row += `<button id="enclosure-delete-${current.id}">Supprimer</button></td>`
+    row += `<button id="enclosure-delete-${current.id}"> X </button></td>`
     // close row
     row += "</tr>";
     return row;
@@ -40,11 +55,12 @@ async function displayEnclosures(){
       requestDelete(id);
     })
   }
+  displayCharts()
 }
 
 function toggleForm(){
   document.getElementById("enclosure-creation-container").classList.toggle("hidden")
-  document.getElementById("create-enclosure-button").classList.toggle("hidden")
+  document.getElementById("create-button-container").classList.toggle("hidden")
 }
 
 async function startEdit(id) {

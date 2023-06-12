@@ -9,61 +9,93 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'" />
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
   -->
-    <title>Zoo dashboard</title>
+  <title>Zoo dashboard</title>
 
   <link rel="stylesheet" href="styles.css">
   <!-- scripts used -->
-  <script src="./node_modules/chart.js/dist/chart.umd.js"></script>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+
   <script defer src="scripts/chat.js"></script>
   <script defer src="scripts/services/enclosure.js"></script>
   <script defer src="scripts/controllers/enclosure.js"></script>
-
+  <script defer src="scripts/controllers/charts.js"></script>
 </head>
 
 <body>
 
   <h1>Tableau de bord zoo</h1>
 
-  <div class="hidden">
+  <div class="container">
 
-    <div>Chat</div>
-    <div id="chat-messages"></div>
-    <button type="button" id="addTextButton">+</button>
-    <br>
-    <br>
-    <br>
+
+    <div class="hidden">
+
+      <div>Chat</div>
+      <div id="chat-messages"></div>
+      <button type="button" id="addTextButton">+</button>
+      <br>
+      <br>
+      <br>
+    </div>
+
+
+    <!-- Table and Form -->
+    <div style="display: flex; justify-content: space-evenly;">
+      <!-- Enclosure List-->
+      <div class="" style="width: 60%;">
+        <b>Liste des enclos</b>
+        <table id="enclosure-table">
+        </table>
+      </div>
+
+
+      <!-- Enclosure creation -->
+      <div id="create-button-container" class="" style="width: 40%;">
+        <button id="create-enclosure-button">Nouveau</button>
+        <br>
+      </div>
+
+      <!-- Create/Edit form -->
+      <div id="enclosure-creation-container" class="hidden" style="width: 40%;">
+        <b>Creer un nouvel enclos</b>
+        <form id="enclosure-form">
+          <input type="hidden" id="id" name="id" value=-1><br>
+          <input id="name" type="text" name="name" placeholder="Nom de l'enclos"><br>
+          <select id="shape" name="shape">
+            <option value="square">Carré</option>
+            <option value="circle">Circulaire</option>
+            <option value="other">Irrégulier</option>
+          </select><br>
+          <input id="surface" type="number" name="surface" step=1 min=0 max=1000 placeholder="100">m²<br>
+          <select id="biome" name="biome">
+            <option value="desert">Désertique</option>
+            <option value="jungle">Jungle</option>
+            <option value="sea">Maritime</option>
+            <option value="forest">Forestier</option>
+          </select><br>
+          <button id="close-enclosure-button" type="button">Annuler</button>
+          <button id="enclosure-form-button" type="submit">Confirmer</button>
+        </form>
+      </div>
+
+    </div>
+    <!-- End table and form -->
+
+    <!-- Chart -->
+    <div>
+      <figure class="highcharts-figure">
+        <div id="surface-chart"></div>
+        <p class="highcharts-description">
+          Pie charts are very popular for showing a compact overview of a
+          composition or comparison. While they can be harder to read than
+          column charts, they remain a popular choice for small datasets.
+        </p>
+      </figure>
+    </div>
+    <!-- End Chart -->
+
   </div>
-
-  <!-- Enclosure creation -->
-  <button id="create-enclosure-button">+</button>
-  <br>
-  <div id="enclosure-creation-container" class="hidden">
-
-    <b>Creer un nouvel enclos</b>
-    <form id="enclosure-form">
-      <input type="hidden" id="id" name="id" value=-1><br>
-      <input id="name" type="text" name="name" placeholder="Nom de l'enclos"><br>
-      <select id="shape" name="shape">
-        <option value="square">Carré</option>
-        <option value="circle">Circulaire</option>
-        <option value="other">Irrégulier</option>
-      </select><br>
-      <input id="surface" type="number" name="surface" step=1 min=0 max=1000 placeholder="100">m²<br>
-      <select id="biome" name="biome">
-        <option value="desert">Désertique</option>
-        <option value="jungle">Jungle</option>
-        <option value="sea">Maritime</option>
-      </select><br>
-      <button id="close-enclosure-button" type="button">Annuler</button>
-      <button id="enclosure-form-button" type="submit">Confirmer</button>
-
-    </form>
-  </div>
-
-  <b>Liste des enclos</b>
-  <table id="enclosure-table">
-
-  </table>
 
 </body>
 
