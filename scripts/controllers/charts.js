@@ -17,8 +17,6 @@ async function displayCharts() {
     totalsByBiome[item.biome] += item.surface;
   }
 
-  console.log(totalSurface)
-  console.log(totalsByBiome)
   if (totalSurface === 0) {
     return
   };
@@ -31,7 +29,6 @@ async function displayCharts() {
     }
     return [...stack, itemData]
   }, [])
-
 
 
   Highcharts.chart('surface-chart', {
