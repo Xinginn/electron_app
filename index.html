@@ -24,12 +24,15 @@
 
   <h1>Tableau de bord zoo</h1>
 
-  <div>Chat</div>
-  <div id="chat-messages"></div>
-  <button type="button" id="addTextButton">+</button>
-  <br>
-  <br>
-  <br>
+  <div class="hidden">
+
+    <div>Chat</div>
+    <div id="chat-messages"></div>
+    <button type="button" id="addTextButton">+</button>
+    <br>
+    <br>
+    <br>
+  </div>
 
   <!-- Enclosure creation -->
   <button id="create-enclosure-button">+</button>
@@ -51,11 +54,13 @@
         <option value="jungle">Jungle</option>
         <option value="sea">Maritime</option>
       </select><br>
+      <button id="close-enclosure-button" type="button">Annuler</button>
       <button id="enclosure-form-button" type="submit">Confirmer</button>
+
     </form>
   </div>
 
-  <b>Enclosure List</b>
+  <b>Liste des enclos</b>
   <table id="enclosure-table">
 
   </table>

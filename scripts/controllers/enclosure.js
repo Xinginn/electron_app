@@ -3,7 +3,8 @@
 let enclosuresData = []
 
 document.getElementById("enclosure-form").addEventListener("submit", event => handleSubmit(event))
-document.getElementById("create-enclosure-button").addEventListener("click", event => toggleCreation())
+document.getElementById("create-enclosure-button").addEventListener("click", event => toggleForm())
+document.getElementById("close-enclosure-button").addEventListener("click", event => toggleForm())
 
 
 
@@ -41,15 +42,16 @@ async function displayEnclosures(){
   }
 }
 
-function toggleCreation(){
+function toggleForm(){
   document.getElementById("enclosure-creation-container").classList.toggle("hidden")
   document.getElementById("create-enclosure-button").classList.toggle("hidden")
 }
 
-function startEdit(id) {
-  const item = getEnclosureById(id);
+async function startEdit(id) {
+  const item = await getEnclosureById(id);
   document.getElementById("enclosure-creation-container").classList.toggle("hidden")
   document.getElementById("create-enclosure-button").classList.toggle("hidden")
+
   document.getElementById("id").setAttribute('value', (item.id).toString())
   document.getElementById("name").setAttribute('value', (item.name))
   document.getElementById("shape").value = item.shape
@@ -62,8 +64,7 @@ async function requestDelete(id) {
     console.log('delete ', id)
     
     await deleteEnclosure(id);
-    await displayEnclosures();
-    console.log(enclosuresData);
+    displayEnclosures();
   }
 }
 
@@ -80,21 +81,12 @@ async function handleSubmit(event){
     biome: event.target.biome.value,
   }
   if (isCreation) {
-    console.log('is creation')
-    postEnclosure(payload)
-    //enclosures.push({id, ...payload})
+    await postEnclosure(payload)
   } else {
-    patchEnclosure(id, payload)
-    /*
-    for (let i = 0; i < enclosures.length; i++){
-      if (enclosures[i].id === id){
-        const newItem = Object.assign(enclosures[i], payload);
-        enclosures[i] = newItem;
-      }
-    }
-    */
+    await patchEnclosure(id, payload)
   }
-  await displayEnclosures();
+  toggleForm();
+  displayEnclosures();
 }
 
 displayEnclosures();
