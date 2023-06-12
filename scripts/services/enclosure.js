@@ -33,9 +33,13 @@ function patchEnclosure(id, payload){
 }
 
 function deleteEnclosure(id){
+  console.log('delete ', id )
   for (let i = 0; i < enclosures.length; i++){
+    console.log('index: ', i)
+    console.log('enclosure id: ', enclosures[i].id)
     if (enclosures[i].id === id){
-      enclosures.splice(i,0);
+      console.log('should delete')
+      enclosures.splice(i,1);
     }
   }
 }

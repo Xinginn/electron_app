@@ -18,7 +18,6 @@ function displayEnclosures(){
     for (let key of Object.keys(current)){
       row += `<td>${current[key]}</td>`
     }
-    console.log(current.id)
     // add modify button
     row += `<td><button id="enclosure-edit-${current.id}">Modifier</button>`
     // add delete button
@@ -59,8 +58,12 @@ function startEdit(id) {
 }
 
 function requestDelete(id) {
-  if (alert('VOulez vous vraiment supprimer cet enclos?')) {
-    console.log('delete', index)
+  if (window.confirm('Voulez vous vraiment supprimer cet enclos?')) {
+    console.log('delete ', id)
+    
+    deleteEnclosure(id);
+    displayEnclosures();
+    console.log(enclosuresData);
   }
 }
 
