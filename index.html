@@ -15,13 +15,13 @@
   <!-- scripts used -->
 
   <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.2/socket.io.js"></script>
 
   <script defer src="scripts/chat.js"></script>
   <script defer src="scripts/services/enclosure.js"></script>
   <script defer src="scripts/controllers/enclosure.js"></script>
   <script defer src="scripts/controllers/charts.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.2/socket.io.js"></script>
-  <script defer src="scripts/controllers/websocket.js"></script>
+  <script defer src="scripts/controllers/chat.js"></script>
 </head>
 
 <body>
@@ -30,11 +30,15 @@
 
   <div class="container">
 
-    <div class="hidden">
-
-      <div>Chat</div>
-      <div id="chat-messages"></div>
-      <button type="button" id="addTextButton">+</button>
+    <div class="">
+      <h3>Chat</h3>
+      <div id="chat-history">
+        <!-- Chat messages are displayes here -->
+      </div>
+      <div>
+        <input id="chat-input" type="text" placeholder="message..." />
+        <button type="button" id="chat-send-button">Envoyer</button>
+      </div>
       <br>
       <br>
       <br>
@@ -45,7 +49,7 @@
     <div style="display: flex; justify-content: space-evenly;">
       <!-- Enclosure List-->
       <div class="" style="width: 60%;">
-        <b>Liste des enclos</b>
+        <h3>Liste des enclos</h3>
         <table id="enclosure-table">
         </table>
       </div>

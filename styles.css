@@ -22,6 +22,25 @@ body {
   margin-left: 10%;
 }
 
+#chat-history {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-message {
+
+}
+
+.chat-message.info {
+  font-style: italic;
+  color: #3c586e;
+}
+
+.chat-message.error {
+  font-style: bold;
+  color: red;
+}
+
 
 /* highchart */
 .highcharts-figure,
