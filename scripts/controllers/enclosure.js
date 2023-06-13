@@ -83,7 +83,7 @@ async function startEdit(id) {
   document.getElementById("form-title").innerText = `Editer l'enclos #${item.id}`;
 
   document.getElementById("id").setAttribute('value', (item.id).toString())
-  document.getElementById("name").setAttribute('value', (item.name))
+  document.getElementById("input-name").setAttribute('value', (item.name))
   document.getElementById("shape").value = item.shape
   document.getElementById("surface").setAttribute('value', (item.surface).toString())
   document.getElementById("biome").value = item.biome
@@ -92,7 +92,6 @@ async function startEdit(id) {
 // called when delete enclosure button is clicked
 async function requestDelete(id) {
   if (window.confirm('Voulez vous vraiment supprimer cet enclos?')) {
-    console.log('delete ', id)
     
     await deleteEnclosure(id);
     displayEnclosures();

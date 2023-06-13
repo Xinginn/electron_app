@@ -42,7 +42,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 400px;
+  height: 430px;
 }
 
 #chat-messages {
@@ -54,6 +54,7 @@ body {
 
 #chat-history {
   display: flex;
+  max-height: 300px;
   flex-direction: column;
   overflow-y: scroll;
 }
