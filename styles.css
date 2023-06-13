@@ -59,10 +59,15 @@ body {
 }
 
 .chat-message {
-
+  padding: 10px;
+  background-color: rgba(18, 67, 131, 0.212);
+  border-radius: 8px;
+  width: fit-content;
+  margin-bottom: 3px;
 }
 
 .chat-message.info {
+  background-color: none;
   font-style: italic;
   color: #3c586e;
 }
@@ -72,6 +77,9 @@ body {
   color: red;
 }
 
+input {
+  padding: 6px;
+}
 
 /* highchart */
 .highcharts-figure,
