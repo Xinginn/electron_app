@@ -14,6 +14,7 @@ const socket = io("ws://localhost:3000", {
 function logMessage(message, extraClass = "") {
   history.push(message);
   chatHistoryElement.innerHTML += `<div class="chat-message ${extraClass}">${message}</div>`;
+  chatHistoryElement.scrollTop = chatHistoryElement.scrollHeight;
 }
 
 // retrieve message string and send it via socket

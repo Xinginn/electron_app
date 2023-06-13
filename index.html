@@ -19,50 +19,65 @@
 
   <script defer src="scripts/services/enclosure.js"></script>
   <script defer src="scripts/controllers/enclosure.js"></script>
-  <script defer src="scripts/controllers/charts.js"></script>
-  <script defer src="scripts/controllers/chat.js"></script>
+  <script defer src="scripts/charts.js"></script>
+  <script defer src="scripts/chat.js"></script>
 </head>
 
 <body>
 
   <h1>Tableau de bord zoo</h1>
 
+  <!-- Container -->
   <div class="container">
 
-    <div class="">
-      <h3>Chat</h3>
-      <div id="chat-history">
-        <!-- Chat messages are displayes here -->
+    <div class="row">
+      <!-- Chat -->
+      <div id="chat" class="block">
+        <div class="title">Chat</div>
+        <div>
+          <div id="chat-history">
+            <!-- Chat messages are displayes here -->
+          </div>
+          <div>
+            <input id="chat-input" type="text" placeholder="message..." />
+            <button type="button" id="chat-send-button">Envoyer</button>
+          </div>
+        </div>
       </div>
-      <div>
-        <input id="chat-input" type="text" placeholder="message..." />
-        <button type="button" id="chat-send-button">Envoyer</button>
+      <!-- End Chat -->
+
+
+      <!-- Pie chart -->
+      <div style="width: 55%;">
+        <figure class="highcharts-figure">
+          <div id="surface-chart"></div>
+
+        </figure>
       </div>
-      <br>
-      <br>
-      <br>
+      <!-- End Pie chart -->
+
     </div>
+    <!-- end Chat and Pie chart-->
 
 
     <!-- Table and Form -->
-    <div style="display: flex; justify-content: space-evenly;">
+    <div class="row">
       <!-- Enclosure List-->
-      <div class="" style="width: 60%;">
-        <h3>Liste des enclos</h3>
+      <div class="block" style="width: 55%;">
+        <div class="title">Liste des enclos</div>
         <table id="enclosure-table">
         </table>
       </div>
 
-
       <!-- Enclosure creation -->
-      <div id="create-button-container" class="" style="width: 40%;">
+      <div id="create-button-container" class="" style="width: 35%;">
         <button id="create-enclosure-button">Nouveau</button>
         <br>
       </div>
 
       <!-- Create/Edit form -->
-      <div id="enclosure-creation-container" class="hidden" style="width: 40%;">
-        <b>Creer un nouvel enclos</b>
+      <div id="enclosure-creation-container" class="hidden block" style="width: 35%;">
+        <div id="form-title" clas="title">Creer un nouvel enclos</div>
         <form id="enclosure-form">
           <input type="hidden" id="id" name="id" value=-1><br>
           <input id="name" type="text" name="name" placeholder="Nom de l'enclos"><br>
@@ -82,24 +97,12 @@
           <button id="enclosure-form-button" type="submit">Confirmer</button>
         </form>
       </div>
-
+      
     </div>
     <!-- End table and form -->
 
-    <!-- Chart -->
-    <div>
-      <figure class="highcharts-figure">
-        <div id="surface-chart"></div>
-        <p class="highcharts-description">
-          Pie charts are very popular for showing a compact overview of a
-          composition or comparison. While they can be harder to read than
-          column charts, they remain a popular choice for small datasets.
-        </p>
-      </figure>
-    </div>
-    <!-- End Chart -->
-
   </div>
+  <!-- end Container -->
 
 </body>
 

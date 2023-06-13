@@ -3,9 +3,11 @@
 let enclosuresData = []
 
 document.getElementById("enclosure-form").addEventListener("submit", event => handleSubmit(event))
-document.getElementById("create-enclosure-button").addEventListener("click", event => toggleForm())
+document.getElementById("create-enclosure-button").addEventListener("click", event => startCreation())
 document.getElementById("close-enclosure-button").addEventListener("click", event => toggleForm())
 
+
+// labels for display
 const biomeLabels = {
   desert: "Désertique",
   jungle: "Jungle",
@@ -20,6 +22,8 @@ const shapeLabels = {
 }
 
 
+
+// refresh enclosure table display. called at start, and after each modification
 async function displayEnclosures(){
   // get all enclosures
   enclosuresData = await getEnclosures();
@@ -58,15 +62,25 @@ async function displayEnclosures(){
   displayCharts()
 }
 
+// toggle visibility for create/edit form and new enclosure button
 function toggleForm(){
-  document.getElementById("enclosure-creation-container").classList.toggle("hidden")
-  document.getElementById("create-button-container").classList.toggle("hidden")
+  document.getElementById("enclosure-creation-container").classList.toggle("hidden");
+  document.getElementById("create-button-container").classList.toggle("hidden");
 }
 
+// called when New enclosure button is clicked
+function startCreation() {
+  document.getElementById("form-title").innerText = "Créer un nouvel enclos";
+  toggleForm();
+}
+
+// called when edit enclosure button is clicked
 async function startEdit(id) {
   const item = await getEnclosureById(id);
-  document.getElementById("enclosure-creation-container").classList.toggle("hidden")
-  document.getElementById("create-enclosure-button").classList.toggle("hidden")
+  if (document.getElementById("enclosure-creation-container").classList.contains("hidden")) {
+    toggleForm();
+  }
+  document.getElementById("form-title").innerText = `Editer l'enclos #${item.id}`;
 
   document.getElementById("id").setAttribute('value', (item.id).toString())
   document.getElementById("name").setAttribute('value', (item.name))
@@ -75,6 +89,7 @@ async function startEdit(id) {
   document.getElementById("biome").value = item.biome
 }
 
+// called when delete enclosure button is clicked
 async function requestDelete(id) {
   if (window.confirm('Voulez vous vraiment supprimer cet enclos?')) {
     console.log('delete ', id)
@@ -84,6 +99,7 @@ async function requestDelete(id) {
   }
 }
 
+// called when create/edit enclosure form is submitted
 async function handleSubmit(event){
   event.preventDefault();
   const isCreation = (event.target.id.value == -1);
@@ -105,4 +121,5 @@ async function handleSubmit(event){
   displayEnclosures();
 }
 
+// call enclosures display on start
 displayEnclosures();
